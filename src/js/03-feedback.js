@@ -1,70 +1,70 @@
-// import throttle from 'lodash.throttle';
+import throttle from 'lodash.throttle';
 
-// const refs = {
-//   feedbackForm: document.querySelector('.feedback-form'),
-//   email: document.querySelector('[name="email"]'),
-//   message: document.querySelector('[name="message"]'),
-//   STORAGE_KEY: 'feedback-form-state',
-//   data: {},
-// };
+const refs = {
+  feedbackForm: document.querySelector('.feedback-form'),
+  email: document.querySelector('[name="email"]'),
+  message: document.querySelector('[name="message"]'),
+  STORAGE_KEY: 'feedback-form-state',
+  data: {},
+};
 
-// class FeedbackForm {
-//   constructor({ feedbackForm, email, message, STORAGE_KEY, data }) {
-//     this.feedbackForm = feedbackForm;
-//     this.email = email;
-//     this.message = message;
-//     this.STORAGE_KEY = STORAGE_KEY;
-//     this.data = data;
-//   }
+class FeedbackForm {
+  constructor({ feedbackForm, email, message, STORAGE_KEY, data }) {
+    this.feedbackForm = feedbackForm;
+    this.email = email;
+    this.message = message;
+    this.STORAGE_KEY = STORAGE_KEY;
+    this.data = data;
+  }
 
-//   init() {
-//     this.checkStorage();
-//     this.addListeners();
-//   }
+  init() {
+    this.checkStorage();
+    this.addListeners();
+  }
 
-//   addListeners() {
-//     this.feedbackForm.addEventListener('submit', this.onSubmit.bind(this));
-//     this.feedbackForm.addEventListener(
-//       'input',
-//       throttle(this.onInput.bind(this), 500)
-//     );
-//   }
+  addListeners() {
+    this.feedbackForm.addEventListener('submit', this.onSubmit.bind(this));
+    this.feedbackForm.addEventListener(
+      'input',
+      throttle(this.onInput.bind(this), 500)
+    );
+  }
 
-//   checkStorage() {
-//     try {
-//       if (localStorage.getItem(this.STORAGE_KEY)) {
-//         const text = JSON.parse(localStorage.getItem(this.STORAGE_KEY));
+  checkStorage() {
+    try {
+      if (localStorage.getItem(this.STORAGE_KEY)) {
+        const text = JSON.parse(localStorage.getItem(this.STORAGE_KEY));
 
-//         this.email.value = `${text.email}`;
-//         this.message.value = `${text.message}`;
-//       }
-//     } catch (e) {
-//       console.log(error.name);
-//       console.log(error.message);
-//     }
-//   }
+        this.email.value = `${text.email}`;
+        this.message.value = `${text.message}`;
+      }
+    } catch (e) {
+      console.log(error.name);
+      console.log(error.message);
+    }
+  }
 
-//   onInput(evt) {
-//     this.data[evt.target.name] = evt.target.value;
+  onInput(evt) {
+    this.data[evt.target.name] = evt.target.value;
 
-//     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.data));
-//   }
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.data));
+  }
 
-//   onSubmit(evt) {
-//     evt.preventDefault();
+  onSubmit(evt) {
+    evt.preventDefault();
 
-//     const { email, message } = evt.target.elements;
+    const { email, message } = evt.target.elements;
 
-//     if (!email.value || !message.value) {
-//       return alert('Будь ласка, заповніть всі поля!');
-//     }
+    if (!email.value || !message.value) {
+      return alert('Будь ласка, заповніть всі поля!');
+    }
 
-//     console.log({ email: email.value, message: message.value });
+    console.log({ email: email.value, message: message.value });
 
-//     localStorage.removeItem(this.STORAGE_KEY);
+    localStorage.removeItem(this.STORAGE_KEY);
 
-//     this.feedbackForm.reset();
-//   }
-// }
+    this.feedbackForm.reset();
+  }
+}
 
-// new FeedbackForm(refs).init();
+new FeedbackForm(refs).init();
