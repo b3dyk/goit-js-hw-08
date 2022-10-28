@@ -1,13 +1,5 @@
 import throttle from 'lodash.throttle';
 
-const refs = {
-  feedbackForm: document.querySelector('.feedback-form'),
-  email: document.querySelector('[name="email"]'),
-  message: document.querySelector('[name="message"]'),
-  STORAGE_KEY: 'feedback-form-state',
-  data: {},
-};
-
 class FeedbackForm {
   constructor({ feedbackForm, email, message, STORAGE_KEY, data }) {
     this.feedbackForm = feedbackForm;
@@ -66,5 +58,13 @@ class FeedbackForm {
     this.feedbackForm.reset();
   }
 }
+
+const refs = {
+  feedbackForm: document.querySelector('.feedback-form'),
+  email: document.querySelector('[name="email"]'),
+  message: document.querySelector('[name="message"]'),
+  STORAGE_KEY: 'feedback-form-state',
+  data: {},
+};
 
 new FeedbackForm(refs).init();
